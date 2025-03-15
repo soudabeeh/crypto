@@ -71,7 +71,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onClick={() => typeof num === 'number' && onPageChange(num)}
           className={`px-3 py-1 ${
             currentPage === num
-              ? 'bg-blue-500 text-white rounded-full'
+              ? 'bg-sky-700 text-white rounded-full'
               : 'text-gray-700 dark:text-white'
           }`}
           disabled={num === '...'}

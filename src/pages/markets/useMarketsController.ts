@@ -23,7 +23,6 @@ const useMarketsController = () => {
 
   const handleTabChange = (index: number) => {
     setActiveTab(index === 0 ? 'IRT' : 'USDT');
-    console.log(index);
   };
 
   const handlePageChange = (page: number) => {

@@ -25,7 +25,7 @@ const Markets = () => {
   }
 
   return (
-    <div className='py-10 px-6 h-screen bg-white dark:bg-gray-800'>
+    <div className='py-10 px-6 h-screen  bg-white dark:bg-gray-800'>
       <Tabs onTabChange={handleTabChange}>
         {TABS.map((tab) => (
           <Tab key={tab} label={tab}>

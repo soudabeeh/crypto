@@ -7,7 +7,10 @@ const MainLayout = () => {
 
   return (
     <div className='w-full flex items-center text-white bg-sky-700 p-4 font-vazir dark:bg-gray-900 '>
-      <div className='absolute left-6' onClick={() => navigate('/markets')}>
+      <div
+        className='absolute left-6 cursor-pointer'
+        onClick={() => navigate('/markets')}
+      >
         <HomeIcon />
       </div>
       <div className='m-auto'>کریپتوپین</div>

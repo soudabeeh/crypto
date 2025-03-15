@@ -15,7 +15,7 @@ const MarketList = ({ markets, handleClickCard }: MarketListProps) => {
       {markets.map((market: Market) => (
         <Card
           key={market.id}
-          className='p-4 flex flex-col justify-between text-black '
+          className='p-4 flex flex-col justify-between text-black cursor-pointer '
           handleClick={handleClickCard.bind(null, market.id)}
         >
           <div className='flex flex-col justify-between h-full gap-8'>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   fetchBuyOrders,
@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { convertTime } from '@/helper/functions';
 import { Order } from '@/models/MarketDetail';
 import PercentInput from '@/components/bussiness/PercentInput';
+import NProgress from 'nprogress';
 
 const API_MAP = {
   sell: fetchSellOrders,
@@ -30,13 +31,21 @@ const useMarketDetailController = () => {
   ]);
   const [activeTab, setActiveTab] = useState<TabType>('buy');
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, isFetching } = useQuery({
     queryKey: [activeTab, id],
     queryFn: () => API_MAP[activeTab](Number(id)),
     enabled: Boolean(activeTab),
     refetchInterval: 3000,
     staleTime: 3000,
   });
+
+  useEffect(() => {
+    if (isFetching) {
+      NProgress.start();
+    } else {
+      NProgress.done();
+    }
+  }, [isFetching]);
 
   const calcTotal = (orders: Order[], key: keyof (typeof orders)[0]) => {
     return orders.reduce((sum, order) => Number(sum) + Number(order[key]), 0);
@@ -82,7 +91,6 @@ const useMarketDetailController = () => {
   }, [data, activeTab]);
 
   const handleChangePercent = (percent: number) => {
-    console.log('dataaaa', data);
     const item = processedData.find((item: Order) => item.amount === 'مجموع');
     if (!item) return;
     const updatedData = [
